@@ -5,12 +5,10 @@ import { useRecoilState } from "recoil";
 import { playlistIdState } from "../atoms/playlistAtom";
 import useSpotify from "../hooks/useSpotify";
 
-var any = [];
-
 function Sidebar() {
     const spotifyApi = useSpotify();
     const { data: session, status } = useSession();
-    const [playlists, setPlaylists, dispatch] = useState([]);
+    const [playlists, setPlaylists] = useState([]);
     const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
 
     useEffect(() => {
@@ -20,8 +18,6 @@ function Sidebar() {
             });
         }
     }, [session, spotifyApi]);
-
-    console.log(playlists);
     
     return (
         <div className="text-gray-500 p-5 text-sm border-r border-gray-900 overflow-y-scroll scrollbar-hide h-screen">
@@ -31,7 +27,8 @@ function Sidebar() {
                     onClick={() => signOut()}>
                     <p>Log Out</p>
                 </button>
-                <button className="flex items-center space-x-2 hover:text-white">
+                <button 
+                    className="flex items-center space-x-2 hover:text-white">
                     <HomeIcon className="h-5 w-5"/>
                     <p>Home</p>
                 </button>
@@ -69,7 +66,6 @@ function Sidebar() {
                         {playlist.name}
                     </p>
                 })}
-                
             </div>
         </div>
     );
