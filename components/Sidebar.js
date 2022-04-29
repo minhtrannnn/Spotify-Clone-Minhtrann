@@ -20,7 +20,7 @@ function Sidebar() {
     }, [session, spotifyApi]);
 
     return (
-        <div className="text-gray-500 p-5 text-sx lg:text-sm border-r border-gray-900 overflow-y-scroll scrollbar-hide h-screen sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex pb-36">
+        <div className="text-gray-500 p-5 text-sx lg:text-sm border-r border-gray-900 overflow-y-scroll scrollbar-hide h-screen sm:max-w-[12rem] lg:max-w-[20rem] lg:min-w-[13rem] hidden md:inline-flex pb-36">
             <div className="space-y-4">
                 <button 
                     className="flex items-center space-x-2 hover:text-white">
@@ -38,7 +38,7 @@ function Sidebar() {
                     <p>Your Library</p>
                 </button>
 
-                <hr className="border-t-[0.1px] border-white-900"/>
+                <hr className="w-40 border-t-[0.1px] border-gray-600"/>
 
                 <button 
                     className="flex items-center space-x-2 hover:text-white">
@@ -55,7 +55,7 @@ function Sidebar() {
                     <p>Your Episodes</p>
                 </button>
             
-                <hr className="border-t-[0.1px] border-white-900"/>
+                <hr className="w-40 border-t-[0.1px] border-gray-600"/>
 
                 <>
                     {playlists.map((playlist) => {
