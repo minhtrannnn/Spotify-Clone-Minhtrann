@@ -10,6 +10,7 @@ function Login({ providers }) {
             />
 
             {Object.values(providers).map((provider) => (
+                console.log(provider.name),
                 <div 
                     key={provider.name}>
                     <button 
