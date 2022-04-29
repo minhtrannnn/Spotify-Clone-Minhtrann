@@ -1,6 +1,11 @@
 import { getProviders, signIn } from "next-auth/react";
+import { useEffect } from "react";
 
 function Login({ providers }) {
+    useEffect(() => {
+        document.title = "Spotify"
+    }, []);
+    
     return (
         <div className="flex flex-col items-center bg-black min-h-screen w-full justify-center">
             <img
