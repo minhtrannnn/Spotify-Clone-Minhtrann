@@ -5,7 +5,7 @@ export async function middleware(req) {
     const token = await getToken({ req, secret:process.env.JWT_SECRET });
 
     const { pathname } = req.nextUrl;
-    const url = req.nextUrl.clone();
+    const url = req.nextUrl;
     
     if(pathname.includes("/api/auth") || token) {
         return NextResponse.next();
