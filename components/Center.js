@@ -7,6 +7,7 @@ import { playlistIdState, playlistState} from "../atoms/playlistAtom";
 import useSpotify from "../hooks/useSpotify";
 import Songs from "./Songs";
 import spotifyApi from "../lib/spotify";
+import { millisToHoursAndMinutes } from "../lib/timeHour";
 
 const colors = [
     "from-indigo-500",
@@ -40,7 +41,13 @@ function Center() {
         }).catch((err) => console.log("Something went wrong", err));
     }, [spotifyApi, playlistId])
 
-    console.log(playlist);
+    console.log(playlist)
+    var total = playlist?.tracks.total;
+    var duration = 0;
+    
+    playlist?.tracks.items.map((track) => {
+        duration += track.track.duration_ms;
+    });
 
     return (
         <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
@@ -66,8 +73,20 @@ function Center() {
                     alt=""
                 />
                 <div>
-                    <p>PLAYLIST</p>
-                    <h1 className="text-2xl md:text-3xl xl:text-5xl">{playlist?.name}</h1>
+                    <p>PUBLIC PLAYLIST</p>
+                    <h1 className="text-5xl md:text-5xl xl:text-8xl">{playlist?.name}</h1>
+                    &nbsp;
+                    <div className="flex items-center space-x-2">
+                        <img 
+                            className="rounded-full w-5 h-5"
+                            src={session?.user.image} 
+                        alt="" 
+                        />
+                        <h2>{session?.user.name}</h2>
+                        <h2>.</h2>
+                        <h2>{total} Songs, </h2>
+                        <p class="text-gray-500">{millisToHoursAndMinutes(duration)}</p>
+                    </div>
                 </div>
             </section>
 
